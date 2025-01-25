@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" name="viewport" width="device-width">
+  <title>survey form</title>
+  <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <h1 id="title">Survey Form</h1>
+      <p id="description">We would love to hear your feedback! Please fill out the survey below.</p>
+      </header>
+
+      <form id="survey-form">
+
+<fieldset>
+<label for="name" id="name-label">Name: <input id="name" type="text" placeholder="Enter your name" name="name" required>
+
+<label for="email" id="email-label" >Email: <input id="email" type="email" placeholder="Enter your Email" name="email" required>
+
+<label for="age" id="number-label">Age: <input id="number" type="number" name="age" placeholder="Enter your age" min="13" max="120" >
+</fieldset>
+
+<fieldset>
+<label for="dropdown">Gender</label>
+<select id="dropdown" name="gender">
+<option value="" disabled selected>(Select one)</option>
+<option value="Male">Male</option>
+<option value="female">female</option>
+</select>
+</fieldset>
+
+<fieldset>
+<legend>How often do you smoke?</legend>
+<label><input type="radio" name="frequency" value="daily">daily</label>
+<label><input type="radio" name="frequency" value="weekly">weekly</label>
+<label><input type="radio" name="frequency" value="monthly">monthly</label>
+</fieldset>
+
+<fieldset>
+<legend>How often do you exercise?</legend>
+<label><input type="checkbox" name="activity" value="daily">daily</label>
+ <label><input type="checkbox" name="activity" value="weekly">weekly</label>
+ <label><input type="checkbox" name="activity" value="never">never</label>
+ </fieldset>
+
+<label for="comments">Additional comments: </label>
+<textarea id="comments" name="comments" rows="4" cols="30" placeholder="Let us know your feedback..."></textarea>
+
+<button id="submit" type="submit">Submit</button>
+
+</body>
+</html>
