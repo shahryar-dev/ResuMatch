@@ -1,0 +1,25 @@
+name: Bug report
+description: Report a bug in ResuMatch
+title: "[bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Clear and concise description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1. ...
+        2. ...
+        3. ...
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Browser, Node version

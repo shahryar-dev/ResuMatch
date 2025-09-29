@@ -1,0 +1,72 @@
+@startuml
+' --- Style ---
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowThickness 1.2
+skinparam RoundCorner 8
+skinparam linetype ortho
+left to right direction
+skinparam usecase {
+  BackgroundColor #f7f7f7
+  BorderColor #aaaaaa
+}
+
+' invisible right-pad helper
+skinparam rectangle<<pad>> {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+hide <<pad>> stereotype
+
+' --- Per-actor connector colors ---
+!define COLOR_JOBSEEKER #4e79a7
+!define COLOR_EMAIL     #76b7b2
+!define LJS(a,b) a -[COLOR_JOBSEEKER]- b
+!define LEM(a,b) a -[COLOR_EMAIL]- b
+
+' Primary actor (LEFT)
+actor "Job Seeker" as JS
+
+' System boundary + UCs
+rectangle "Notifications (NTF)" as NTF {
+  usecase "NTF01 Analysis Ready Email" as NTF01
+  usecase "NTF02 Job Match Alert"      as NTF02
+  usecase "NTF03 Billing Status"       as NTF03
+  usecase "NTF04 Usage Threshold"      as NTF04
+}
+
+' Secondary actor (RIGHT)
+actor "Email Service\n(SendGrid)" as EM
+
+' Invisible right-side pad + force right
+rectangle " " <<pad>> as PADR
+EM -[hidden]right-> PADR
+
+' Keep UCs in one row
+NTF01 -[hidden]-> NTF02
+NTF02 -[hidden]-> NTF03
+NTF03 -[hidden]-> NTF04
+
+' FORCE secondary to the RIGHT (LRG method)
+NTF   -[hidden]right-> EM
+NTF04 -[hidden]right-> EM
+
+' Colored associations (NO text on lines)
+LJS(JS, NTF01)
+LJS(JS, NTF02)
+LJS(JS, NTF03)
+LJS(JS, NTF04)
+
+' UC -> actor for secondary
+LEM(NTF01, EM)
+LEM(NTF02, EM)
+LEM(NTF03, EM)
+LEM(NTF04, EM)
+
+legend right
+|= Actor |= Color |
+| Job Seeker | Blue |
+| Email (SendGrid) | Teal |
+endlegend
+@enduml

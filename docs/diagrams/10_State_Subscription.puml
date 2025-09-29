@@ -1,0 +1,31 @@
+@startuml
+' Polished: one label per arrow, clean layout
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam linetype ortho
+skinparam state {
+  BackgroundColor #dbeafe
+  BorderColor #6b9fd6
+  RoundCorner 14
+}
+
+state "Trial"       as Trial
+state "Active"      as Active
+state "Delinquent"  as Delinquent
+state "Canceled"    as Canceled
+state "Expired"     as Expired
+
+[*] --> Trial
+Trial --> Active           : plan_purchased
+
+Active --> Delinquent      : payment_fail
+Delinquent --> Active      : payment_succeeded
+
+Active --> Canceled        : user_cancel
+Delinquent --> Canceled    : user_cancel
+Active --> Expired         : term_ended
+
+Canceled --> [*]
+Expired  --> [*]
+@enduml

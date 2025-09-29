@@ -1,0 +1,118 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+
+entity "USERS" as USERS {
+  * user_id : PK
+  --
+  email
+  password_hash
+  role
+  name
+  location
+  status
+  created_at
+}
+
+entity "RESUMES" as RESUMES {
+  * resume_id : PK
+  --
+  user_id : FK→USERS
+  filename
+  mime_type
+  size_bytes
+  upload_at
+  text : CLOB
+  version
+}
+
+entity "JOB_POSTINGS" as JOBS {
+  * job_id : PK
+  --
+  owner_user_id : FK→USERS
+  title
+  company
+  location
+  salary_min
+  salary_max
+  description : CLOB
+  status
+  created_at
+}
+
+entity "ANALYSIS_RESULTS" as AR {
+  * analysis_id : PK
+  --
+  resume_id : FK→RESUMES
+  job_id : FK→JOB_POSTINGS (NULLABLE)
+  score : INT
+  ats_flags_json : CLOB
+  created_at
+}
+
+entity "SUGGESTIONS" as SUGG {
+  * suggestion_id : PK
+  --
+  analysis_id : FK→ANALYSIS_RESULTS
+  type
+  payload_text : CLOB
+  severity
+}
+
+entity "SKILL_GAPS" as GAPS {
+  * gap_id : PK
+  --
+  analysis_id : FK (NULLABLE)
+  user_id : FK (NULLABLE)
+  skill_name
+  required_level
+  actual_level
+  status
+}
+
+entity "SUBSCRIPTIONS" as SUBS {
+  * sub_id : PK
+  --
+  user_id : FK→USERS
+  plan
+  status
+  start_at
+  end_at
+  next_bill_at
+  usage_json : CLOB
+}
+
+entity "PAYMENTS" as PAY {
+  * payment_id : PK
+  --
+  user_id : FK→USERS
+  sub_id : FK→SUBSCRIPTIONS (NULLABLE)
+  amount : DECIMAL(10,2)
+  currency
+  status
+  provider_ref
+  created_at
+}
+
+entity "NOTIFICATIONS" as NOTIF {
+  * notif_id : PK
+  --
+  user_id : FK→USERS
+  type
+  channel
+  status
+  sent_at
+}
+
+USERS ||--o{ RESUMES
+USERS ||--o{ PAY
+USERS ||--o{ NOTIF
+USERS ||--o| SUBS
+RESUMES ||--o{ AR
+JOBS ||--o{ AR
+AR ||--o{ SUGG
+AR }o--o{ GAPS
+
+@enduml

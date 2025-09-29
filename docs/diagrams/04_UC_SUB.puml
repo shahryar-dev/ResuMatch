@@ -1,0 +1,81 @@
+@startuml
+' --- Style ---
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowThickness 1.2
+skinparam RoundCorner 8
+skinparam linetype ortho
+left to right direction
+skinparam usecase {
+  BackgroundColor #f7f7f7
+  BorderColor #aaaaaa
+}
+
+' invisible right-pad helper
+skinparam rectangle<<pad>> {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+hide <<pad>> stereotype
+
+' --- Per-actor connector colors ---
+!define COLOR_JOBSEEKER #4e79a7
+!define COLOR_PAYMENT   #e15759
+!define COLOR_ADMIN     #f28e2b
+!define LJS(a,b) a -[COLOR_JOBSEEKER]- b
+!define LPM(a,b) a -[COLOR_PAYMENT]- b
+!define LAD(a,b) a -[COLOR_ADMIN]- b
+
+' Primary actor (LEFT)
+actor "Job Seeker" as JS
+
+' System boundary + UCs
+rectangle "Subscription (SUB)" as SUB {
+  usecase "SUB01 View Plans"          as SUB01
+  usecase "SUB02 Purchase/Upgrade"    as SUB02
+  usecase "SUB03 Cancel/Downgrade"    as SUB03
+  usecase "SUB04 Manage Billing Method" as SUB04
+  usecase "SUB05 Enforce Access"      as SUB05
+  usecase "SUB06 Admin Catalog"       as SUB06
+}
+
+' Secondary actors (RIGHT)
+actor "Payment\n(Stripe)" as PM
+actor "Admin" as AD
+
+' Invisible right-side pad keeps secondaries flush-right
+rectangle " " <<pad>> as PADR
+PM -[hidden]right-> PADR
+AD -[hidden]right-> PADR
+
+' Keep UCs in one row
+SUB01 -[hidden]-> SUB02
+SUB02 -[hidden]-> SUB03
+SUB03 -[hidden]-> SUB04
+SUB04 -[hidden]-> SUB05
+SUB05 -[hidden]-> SUB06
+
+' FORCE secondaries to the RIGHT of the row (LRG method)
+SUB   -[hidden]right-> PM
+SUB04 -[hidden]right-> PM
+SUB06 -[hidden]right-> AD
+
+' Colored associations (NO text on lines)
+LJS(JS, SUB01)
+LJS(JS, SUB02)
+LJS(JS, SUB03)
+LJS(JS, SUB04)
+
+' UC -> actor for secondaries to bias right
+LPM(SUB02, PM)
+LPM(SUB04, PM)
+LAD(SUB06, AD)
+
+legend right
+|= Actor |= Color |
+| Job Seeker | Blue |
+| Payment (Stripe) | Red |
+| Admin | Orange |
+endlegend
+@enduml

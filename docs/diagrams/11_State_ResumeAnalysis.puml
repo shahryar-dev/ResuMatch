@@ -1,0 +1,25 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam linetype ortho
+skinparam state {
+    BackgroundColor #dbeafe
+    BorderColor #6b9fd6
+    RoundCorner 14
+}
+
+[*] --> Uploaded
+Uploaded  --> Parsed         : file_parsed
+Parsed    --> Queued         : submit_for_analysis
+Queued    --> Analyzing      : worker_picked
+Analyzing --> Completed      : ai_results_received
+note right of Completed
+  Trigger NTF01: Analysis Ready Email
+end note
+Analyzing --> Failed         : error
+Completed --> Exported       : user_exports
+Completed --> [*]
+Exported  --> [*]
+Failed    --> [*]
+@enduml

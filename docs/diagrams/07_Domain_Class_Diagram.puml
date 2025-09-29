@@ -1,0 +1,125 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam classAttributeIconSize 0
+
+package "Core" {
+  class User {
+    +userId: UUID
+    +email: String
+    +passwordHash: String
+    +role: {JOB_SEEKER|RECRUITER|ADMIN}
+    +name: String
+    +location: String
+    +createdAt: DateTime
+    +status: String
+  }
+
+  class Resume {
+    +resumeId: UUID
+    +userId: UUID
+    +filename: String
+    +mimeType: String
+    +size: Int
+    +uploadAt: DateTime
+    +text: CLOB
+    +version: Int
+  }
+
+  class JobPosting {
+    +jobId: UUID
+    +ownerUserId: UUID
+    +title: String
+    +company: String
+    +location: String
+    +salaryRange: String
+    +description: CLOB
+    +createdAt: DateTime
+    +status: String
+  }
+
+  class AnalysisResult {
+    +analysisId: UUID
+    +resumeId: UUID
+    +jobId: UUID?
+    +score: Int
+    +atsFlagsJSON: CLOB
+    +createdAt: DateTime
+  }
+
+  class Suggestion {
+    +suggestionId: UUID
+    +analysisId: UUID
+    +type: {KEYWORD|REWRITE|ATS}
+    +payloadText: Text
+    +severity: String
+  }
+
+  class SkillGap {
+    +gapId: UUID
+    +analysisId: UUID?
+    +userId: UUID?
+    +skillName: String
+    +levelRequired: String
+    +levelActual: String
+    +status: String
+  }
+
+  class Subscription {
+    +subId: UUID
+    +userId: UUID
+    +plan: {FREE|BASIC|PREMIUM}
+    +status: String
+    +startAt: DateTime
+    +endAt: DateTime
+    +nextBillAt: DateTime
+    +usageJSON: CLOB
+  }
+
+  class Payment {
+    +paymentId: UUID
+    +userId: UUID
+    +subId: UUID?
+    +amount: Decimal(10,2)
+    +currency: String
+    +status: String
+    +providerRef: String
+    +createdAt: DateTime
+  }
+
+  class Notification {
+    +notifId: UUID
+    +userId: UUID
+    +type: String
+    +channel: {EMAIL}
+    +status: String
+    +sentAt: DateTime
+  }
+}
+
+' Associations & multiplicities (SRS-aligned)
+User "1" -- "0..*" Resume
+User "1" -- "0..1" Subscription
+User "1" -- "0..*" Payment
+User "1" -- "0..*" Notification
+User "1" -- "0..*" JobPosting
+
+Resume "1" -- "0..*" AnalysisResult
+JobPosting "0..*" -- "0..*" AnalysisResult
+AnalysisResult "1" -- "0..*" Suggestion
+AnalysisResult "0..*" -- "0..*" SkillGap
+User "1" -- "0..*" SkillGap
+
+' Payment may or may not belong to a Subscription
+Subscription "0..*" -- "0..1" Payment
+
+' XOR: SkillGap references either AnalysisResult or User
+note as XOR
+{xor} SkillGap references either AnalysisResult or User
+end note
+SkillGap .. XOR
+AnalysisResult .. XOR
+User .. XOR
+@enduml

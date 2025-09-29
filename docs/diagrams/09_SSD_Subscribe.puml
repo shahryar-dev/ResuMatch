@@ -1,0 +1,38 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam sequenceArrowThickness 1.2
+hide footbox
+
+actor "Job Seeker" as JS
+participant "ResuMatch System" as SYS
+actor "Payment (Stripe)" as PM
+actor "Email (SendGrid)" as EM
+
+JS -> SYS : 1: View Plans
+SYS --> JS : 1.1: Plans presented
+
+JS -> SYS : 2: Choose Plan & Checkout
+activate SYS
+SYS -> PM  : 2.1: Create checkout session
+PM  --> SYS : 2.2: Session URL
+deactivate SYS
+SYS --> JS : 2.3: Redirect to Stripe
+PM  ->  JS : 2.4: Hosted payment form
+
+alt payment succeeded
+  PM -> SYS  : 3.1: webhook payment_succeeded
+  activate SYS
+  SYS -> SYS : 3.2: activateSubscription()
+  SYS --> PM : 3.2a: 200 OK (ack)
+  SYS --> JS : 3.3: Confirmation shown
+  SYS -> EM  : 3.4: Send receipt email
+  deactivate SYS
+  EM  --> JS : 3.5: Receipt delivered
+else payment failed
+  PM -> SYS  : 3.1f: webhook payment_failed
+  SYS --> JS : 3.2f: Show failure & retry
+  SYS -> EM  : 3.1f.1: Send failure email
+end
+@enduml

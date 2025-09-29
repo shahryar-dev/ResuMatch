@@ -1,0 +1,72 @@
+@startuml
+' --- Style ---
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowThickness 1.2
+skinparam RoundCorner 8
+skinparam linetype ortho
+left to right direction
+skinparam usecase {
+  BackgroundColor #f7f7f7
+  BorderColor #aaaaaa
+}
+
+' make a pad stereotype we can hide
+skinparam rectangle<<pad>> {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+hide <<pad>> stereotype
+
+' --- Per-actor connector colors ---
+!define COLOR_JOBSEEKER #4e79a7
+!define COLOR_AI        #b07aa1
+!define LJS(a,b) a -[COLOR_JOBSEEKER]- b
+!define LAI(a,b) a -[COLOR_AI]- b
+
+' Primary actor (LEFT)
+actor "Job Seeker" as JS
+
+' System boundary + UCs
+rectangle "Resume Analysis (RA)" as RA {
+  usecase "RA01 Submit Resume"            as RA01
+  usecase "RA02 Submit Job Posting"       as RA02
+  usecase "RA03 Analyze & Score"          as RA03
+  usecase "RA04 View Suggestions"         as RA04
+  usecase "RA05 Export Optimized Resume"  as RA05
+}
+
+' Secondary actor (RIGHT)
+actor "AI Service\n(Gemini)" as AI
+
+' Invisible right-side pad keeps AI flush-right (single-space label!)
+rectangle " " <<pad>> as PADR
+AI -[hidden]right-> PADR
+
+' Keep UCs in one row
+RA01 -[hidden]-> RA02
+RA02 -[hidden]-> RA03
+RA03 -[hidden]-> RA04
+RA04 -[hidden]-> RA05
+
+' FORCE AI to the RIGHT of the row (same trick as LRG)
+RA   -[hidden]right-> AI
+RA03 -[hidden]right-> AI
+RA05 -[hidden]right-> AI
+
+' Colored associations (NO text on lines)
+LJS(JS, RA01)
+LJS(JS, RA02)
+LJS(JS, RA04)
+LJS(JS, RA05)
+
+' Secondary association drawn UC -> actor to bias right
+LAI(RA03, AI)
+
+legend right
+|= Actor |= Color |
+| Job Seeker | Blue |
+| AI (Gemini) | Purple |
+endlegend
+@enduml

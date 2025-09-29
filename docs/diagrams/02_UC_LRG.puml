@@ -1,0 +1,99 @@
+@startuml
+' --- Style ---
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowThickness 1.2
+skinparam RoundCorner 8
+skinparam linetype ortho
+left to right direction
+skinparam usecase {
+  BackgroundColor #f7f7f7
+  BorderColor #aaaaaa
+}
+
+' make a pad stereotype we can hide
+skinparam rectangle<<pad>> {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+hide <<pad>> stereotype
+
+' --- Per-actor connector colors ---
+!define COLOR_JOBSEEKER #4e79a7
+!define COLOR_RECRUITER #59a14f
+!define COLOR_ADMIN     #f28e2b
+!define LJS(a,b) a -[COLOR_JOBSEEKER]- b
+!define LRC(a,b) a -[COLOR_RECRUITER]- b
+!define LAD(a,b) a -[COLOR_ADMIN]- b
+
+' Primary actors (LEFT)
+actor "Job Seeker" as JS
+actor "Recruiter"  as RC
+
+' System boundary + UCs
+rectangle "Login & Registration (LRG)" as LRG {
+  usecase "LRG01 Register"        as LRG01
+  usecase "LRG02 Login"           as LRG02
+  usecase "LRG03 Logout"          as LRG03
+  usecase "LRG04 Forgot Password" as LRG04
+  usecase "LRG05 Change Password" as LRG05
+  usecase "LRG06 Edit Profile"    as LRG06
+  usecase "LRG07 Setup 2FA"       as LRG07
+}
+
+' Secondary actor (RIGHT)
+actor "Admin" as AD
+
+' Invisible right-side pad keeps Admin flush-right (single-space label!)
+rectangle " " <<pad>> as PADR
+AD -[hidden]right-> PADR
+
+' Keep UCs in one row
+LRG01 -[hidden]-> LRG02
+LRG02 -[hidden]-> LRG03
+LRG03 -[hidden]-> LRG04
+LRG04 -[hidden]-> LRG05
+LRG05 -[hidden]-> LRG06
+LRG06 -[hidden]-> LRG07
+
+' FORCE Admin to the RIGHT of the row
+LRG   -[hidden]right-> AD
+LRG02 -[hidden]right-> AD
+LRG04 -[hidden]right-> AD
+LRG07 -[hidden]right-> AD
+
+' Colored associations (NO text on lines)
+' Job Seeker
+LJS(JS, LRG01)
+LJS(JS, LRG02)
+LJS(JS, LRG03)
+LJS(JS, LRG04)
+LJS(JS, LRG05)
+LJS(JS, LRG06)
+LJS(JS, LRG07)
+
+' Recruiter
+LRC(RC, LRG01)
+LRC(RC, LRG02)
+LRC(RC, LRG03)
+LRC(RC, LRG04)
+LRC(RC, LRG05)
+LRC(RC, LRG06)
+LRC(RC, LRG07)
+
+' Admin — draw from UC -> Admin to bias right placement
+LAD(LRG02, AD)
+LAD(LRG03, AD)
+LAD(LRG04, AD)
+LAD(LRG05, AD)
+LAD(LRG06, AD)
+LAD(LRG07, AD)
+
+legend right
+|= Actor |= Color |
+| Job Seeker | Blue |
+| Recruiter  | Green |
+| Admin      | Orange |
+endlegend
+@enduml

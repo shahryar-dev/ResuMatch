@@ -1,0 +1,69 @@
+@startuml
+' --- Style ---
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowThickness 1.2
+skinparam RoundCorner 8
+skinparam linetype ortho
+left to right direction
+skinparam usecase {
+  BackgroundColor #f7f7f7
+  BorderColor #aaaaaa
+}
+
+' invisible right-pad helper
+skinparam rectangle<<pad>> {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+hide <<pad>> stereotype
+
+' --- Per-actor connector colors ---
+!define COLOR_RECRUITER #59a14f
+!define COLOR_JOBSEEKER #4e79a7
+!define LRC(a,b) a -[COLOR_RECRUITER]- b
+!define LJS(a,b) a -[COLOR_JOBSEEKER]- b
+
+' Primary actor (LEFT)
+actor "Recruiter" as RC
+
+' System boundary + UCs
+rectangle "Job Posting (JP)" as JP {
+  usecase "JP01 Upload Job Posting"     as JP01
+  usecase "JP02 Set Filters/Keywords"   as JP02
+  usecase "JP03 Review Suggested Resumes" as JP03
+  usecase "JP04 Job-Side Filtering"     as JP04
+  usecase "JP05 Apply/Save Posting"     as JP05
+}
+
+' Secondary actor (RIGHT)
+actor "Job Seeker" as JS
+
+' Invisible right-side pad + force right
+rectangle " " <<pad>> as PADR
+JS -[hidden]right-> PADR
+
+' Keep UCs in one row
+JP01 -[hidden]-> JP02
+JP02 -[hidden]-> JP03
+JP03 -[hidden]-> JP04
+JP04 -[hidden]-> JP05
+
+' FORCE secondary to the RIGHT (LRG method)
+JP   -[hidden]right-> JS
+JP05 -[hidden]right-> JS
+
+' Colored associations (NO text on lines)
+LRC(RC, JP01)
+LRC(RC, JP02)
+LRC(RC, JP03)
+LJS(JS, JP04)
+LJS(JS, JP05)
+
+legend right
+|= Actor |= Color |
+| Recruiter | Green |
+| Job Seeker | Blue |
+endlegend
+@enduml

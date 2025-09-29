@@ -1,0 +1,41 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam sequenceArrowThickness 1.2
+hide footbox
+
+actor "Job Seeker" as JS
+participant "ResuMatch System" as SYS
+actor "AI Service (Gemini)" as AI
+
+JS -> SYS : 1: Submit Resume
+SYS --> JS : 1.1: Upload confirmation
+
+opt User also provides job posting (RA02)
+  JS -> SYS : 2: Submit Job Posting
+  SYS --> JS : 2.1: Job Posting saved
+end
+
+JS -> SYS : 3: Request Analysis (RA03)
+activate SYS
+SYS -> AI  : 3.1: Send analysis request
+activate AI
+AI  --> SYS : 3.2: Analysis results (score, suggestions)
+deactivate AI
+SYS --> JS : 4: Suggestions ready
+deactivate SYS
+
+alt Invalid resume format or empty file
+  SYS --> JS : 4.1: Highlight invalid input
+  SYS --> JS : 4.2: Ask to re-upload
+else Valid resume
+  JS  -> SYS : 4.3: View Suggestions (RA04)
+  SYS --> JS : 4.4: Suggestions presented
+end
+
+alt User clicks Export
+  JS  -> SYS : 5: Export Optimized Resume (RA05)
+  SYS --> JS : 5.1: Optimized file downloaded
+end
+@enduml
