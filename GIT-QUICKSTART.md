@@ -29,6 +29,14 @@ git remote add origin https://github.com/alexkachur98/resumatch.git
 git push -u origin main
 ```
 
+## Commit Messages
+Use Conventional Commits. Examples:
+
+- feat: add resume analysis form
+- fix: prevent form reload on login
+- docs: link SRS and diagrams
+- chore: bump dependencies
+
 ## Branch Strategy
 - Use short‑lived feature branches and PRs to `main`.
 - Keep PRs small and focused.
