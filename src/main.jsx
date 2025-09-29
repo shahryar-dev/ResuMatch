@@ -1,12 +1,14 @@
 /**
- * File: src/main.jsx
- * Purpose: App entry; mounts <App /> to the DOM.
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file main.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Bootstraps the React application and applies global styles.
  */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
+
+import "./styles/base.css";
 
 // Grab the root DOM node created by Vite's index.html
 const rootEl = document.getElementById("root");
