@@ -1,6 +1,6 @@
 # ResuMatch · Full‑Stack Web App
 
-[![CI](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml/badge.svg)](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml)
+[![CI](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 ![Node](https://img.shields.io/badge/node-%E2%89%A520.0-brightgreen)
 
@@ -53,8 +53,6 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the evolving design.
 
 ## Project Structure
 ```txt
-ResuMatch-Part A-SRS.docx         ← current software requirements spec
-ResuMatch-SRS-Diagrams/           ← exported diagrams
 resumatch/
   README.md
   package.json
