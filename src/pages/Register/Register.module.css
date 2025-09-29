@@ -1,0 +1,64 @@
+/*
+ * @file Register.module.css
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Define the structure and spacing for the registration form shell.
+ */
+
+.page {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: 520px;
+}
+
+.header {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.title {
+  font-size: 1.875rem;
+}
+
+.subtitle {
+  color: var(--color-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.input {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface-muted);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-xl);
+  }
+}

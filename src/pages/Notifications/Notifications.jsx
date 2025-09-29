@@ -1,9 +1,10 @@
 /**
- * File: src/pages/Notifications/Notifications.jsx
- * Purpose: Show recent system/user alerts (placeholder).
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file Notifications.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Render placeholder notification items for user updates.
  */
+import styles from "./Notifications.module.css";
 
 export default function Notifications() {
     const items = [
@@ -13,11 +14,18 @@ export default function Notifications() {
     ];
 
     return (
-        <section>
-            <h2>Notifications</h2>
-            <ul>
+        <section className={styles.page}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Notifications</h2>
+                <p className={styles.subtitle}>Recent alerts about analyses, billing, and usage.</p>
+            </header>
+
+            {/* TODO: Fetch notifications feed per FR_NTF01-NTF04 and surface channel/status metadata. */}
+            <ul className={styles.list}>
                 {items.map((msg, idx) => (
-                    <li key={idx}>{msg}</li>
+                    <li key={idx} className={styles.item}>
+                        {msg}
+                    </li>
                 ))}
             </ul>
         </section>

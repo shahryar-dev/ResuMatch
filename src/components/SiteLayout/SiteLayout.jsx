@@ -1,34 +1,65 @@
 /**
- * File: src/components/SiteLayout/SiteLayout.jsx
- * Purpose: Global layout with a simple nav and an <Outlet> for pages.
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file SiteLayout.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Provide the global shell (header, nav, outlet, footer) shared across routes.
  */
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import styles from "./SiteLayout.module.css";
 
 export default function SiteLayout() {
+    // Central definition keeps nav items consistent across layout and future mobile menus.
+    // TODO: Replace static routes with role/plan-aware navigation once auth + FR_SUB05 gating is implemented.
+    const primaryLinks = [
+        { to: "/", label: "Home", end: true },
+        { to: "/auth/login", label: "Login" },
+        { to: "/auth/register", label: "Register" },
+        { to: "/app", label: "Dashboard" },
+        { to: "/analysis", label: "Analyze" },
+        { to: "/subscriptions", label: "Plans" },
+        { to: "/billing", label: "Billing" },
+        { to: "/jobs", label: "Jobs" },
+        { to: "/notifications", label: "Notifications" },
+        { to: "/profile", label: "Profile" },
+    ];
+
     return (
-        <>
-            {/* Use <Link> (client-side) to avoid full page reloads */}
-            <nav>
-                <Link to="/">Home</Link> |{" "}
-                <Link to="/auth/login">Login</Link> |{" "}
-                <Link to="/auth/register">Register</Link> |{" "}
-                <Link to="/app">Dashboard</Link> |{" "}
-                <Link to="/analysis">Analyze</Link> |{" "}
-                <Link to="/subscriptions">Plans</Link> |{" "}
-                <Link to="/billing">Billing</Link> |{" "}
-                <Link to="/jobs">Jobs</Link> |{" "}
-                <Link to="/notifications">Notifications</Link> |{" "}
-                <Link to="/profile">Profile</Link>
-            </nav>
+        <div className={styles.shell}>
+            <header className={styles.header}>
+                <div className={styles.headerInner}>
+                    <Link to="/" className={styles.brand}>
+                        ResuMatch
+                    </Link>
 
-            <hr />
+                    <ul className={styles.navList}>
+                        {primaryLinks.map(({ to, label, end }) => (
+                            <li key={to} className={styles.navItem}>
+                                <NavLink
+                                    to={to}
+                                    end={end}
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? `${styles.navLink} ${styles.navLinkActive}`
+                                            : styles.navLink
+                                    }
+                                >
+                                    {label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </header>
 
-            {/* Child routes render here */}
-            <main>
-                <Outlet />
-            </main>
-        </>
+            <div className={styles.content}>
+                <main className={styles.main}>
+                    <Outlet />
+                </main>
+            </div>
+
+            <footer className={styles.footer}>
+                © {new Date().getFullYear()} ResuMatch. All rights reserved.
+            </footer>
+        </div>
     );
 }

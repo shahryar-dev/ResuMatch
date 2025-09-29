@@ -1,10 +1,11 @@
 /**
- * File: src/pages/ResumeAnalyze/ResumeAnalyze.jsx
- * Purpose: Upload a resume and supply a job posting; start analysis.
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file ResumeAnalyze.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Collect resume and job data prior to triggering an analysis.
  */
 import { useNavigate } from "react-router-dom";
+import styles from "./ResumeAnalyze.module.css";
 
 export default function ResumeAnalyze() {
     const nav = useNavigate();
@@ -29,43 +30,66 @@ export default function ResumeAnalyze() {
             jobFile: jobFile && jobFile.name,
         });
 
-        // TODO: fetch(`${import.meta.env.VITE_API_URL}/analysis`, { ... })
+        // TODO: fetch(`${import.meta.env.VITE_API_URL}/analysis`, { ... }) per FR_RA03/RA04 once backend is ready.
+        // TODO: De-duplicate resume uploads via hashing (FR_RA01 acceptance criteria) before enqueueing jobs.
         nav("/analysis/result");
     }
 
     return (
-        <section>
-            <h2>Analyze Resume</h2>
+        <section className={styles.page}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Analyze Resume</h2>
+                <p className={styles.subtitle}>
+                    Upload your resume and target job so we can generate tailored recommendations.
+                </p>
+            </header>
 
-            {/* One form to submit both resume and job data */}
-            <form onSubmit={onSubmit}>
-                <fieldset>
+            <form className={styles.form} onSubmit={onSubmit}>
+                <fieldset className={styles.fieldset}>
                     <legend>Resume</legend>
-                    <input type="file" name="resume" accept=".pdf,.doc,.docx" required />
+                    <label className={styles.field}>
+                        <span>Upload file</span>
+                        <input
+                            className={styles.input}
+                            type="file"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                            required
+                        />
+                    </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.fieldset}>
                     <legend>Job Posting</legend>
 
-                    {/* Option 1: Paste JD */}
-                    <label>
-                        Paste JD
-                        <br />
+                    <label className={styles.field}>
+                        <span>Paste job description</span>
                         <textarea
+                            className={styles.textarea}
                             name="jobText"
                             rows="6"
                             placeholder="Paste job description here..."
                         ></textarea>
                     </label>
-                    <br />
 
-                    {/* Option 2: Upload posting file */}
-                    <span>or</span>
-                    <br />
-                    <input type="file" name="jobFile" accept=".pdf,.doc,.docx,.txt" />
+                    <div className={styles.divider}>
+                        <span>or</span>
+                    </div>
+
+                    <label className={styles.field}>
+                        <span>Upload job posting file</span>
+                        <input
+                            className={styles.input}
+                            type="file"
+                            name="jobFile"
+                            accept=".pdf,.doc,.docx,.txt"
+                        />
+                    </label>
                 </fieldset>
 
-                <button type="submit">Run Analysis</button>
+                <div className={styles.actions}>
+                    <button type="submit">Run Analysis</button>
+                </div>
             </form>
         </section>
     );

@@ -1,0 +1,84 @@
+/*
+ * @file ResumeAnalyze.module.css
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Style the analysis upload form and supporting controls.
+ */
+
+.page {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.title {
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  color: var(--color-muted);
+  max-width: 60ch;
+}
+
+.form {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.fieldset {
+  display: grid;
+  gap: var(--space-md);
+  border: 1px dashed var(--color-border);
+  background: rgba(238, 241, 248, 0.45);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.input,
+.textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.divider {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-xl);
+  }
+}

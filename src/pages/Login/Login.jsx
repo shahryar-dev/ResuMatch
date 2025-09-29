@@ -1,9 +1,10 @@
 /**
- * File: src/pages/Login/Login.jsx
- * Purpose: Minimal login form (email & password).
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file Login.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Present the login form shell for credential collection.
  */
+import styles from "./Login.module.css";
 
 export default function Login() {
     /**
@@ -20,20 +21,32 @@ export default function Login() {
     }
 
     return (
-        <section>
-            <h2>Login</h2>
-            <form onSubmit={onSubmit}>
-                <label>
-                    Email
-                    <input name="email" type="email" required />
+        <section className={styles.page}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Login</h2>
+                <p className={styles.subtitle}>Access your dashboard and ongoing analyses.</p>
+            </header>
+
+            <form className={styles.form} onSubmit={onSubmit}>
+                <label className={styles.field}>
+                    <span>Email</span>
+                    <input className={styles.input} name="email" type="email" required />
                 </label>
-                <br />
-                <label>
-                    Password
-                    <input name="password" type="password" required />
+
+                <label className={styles.field}>
+                    <span>Password</span>
+                    <input
+                        className={styles.input}
+                        name="password"
+                        type="password"
+                        required
+                        autoComplete="current-password"
+                    />
                 </label>
-                <br />
-                <button type="submit">Login</button>
+
+                <div className={styles.actions}>
+                    <button type="submit">Login</button>
+                </div>
             </form>
         </section>
     );

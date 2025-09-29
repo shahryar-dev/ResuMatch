@@ -1,8 +1,8 @@
 /**
- * File: src/components/ProtectedRoute/ProtectedRoute.jsx
- * Purpose: Guard for private routes. Add real auth check later.
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file ProtectedRoute.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Placeholder for route guarding until real auth is wired up.
  * @param {{ children: React.ReactNode }} props
  */
 // TODO: read auth state (e.g., from Context/Redux) and redirect if not logged in.

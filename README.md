@@ -33,6 +33,12 @@ This repository hosts the **full application**. We’re starting with the fronte
 - Clean, **folder‑per‑page** structure; easy to extend
 - Ready for **API integration** via `VITE_API_URL`
 
+## Styling conventions
+- Global styles live in `src/styles/base.css`.
+- Page styles use **CSS Modules**: `PageName.module.css`.
+- Import modules with: `import styles from "./Home.module.css"`.
+- Prefer semantic class names: `.page`, `.header`, `.title`, `.form`, `.field`, `.actions`.
+
 ## Architecture
 **Current:** SPA frontend.  
 **Planned:** Back end (`server/`) powered by Node.js/Express with a document database (MongoDB), plus an analysis service (LLM‑powered).

@@ -2,6 +2,7 @@
 
 ## 0.1.x (current)
 - Frontend scaffold (routing, forms, pages)
+- CSS scaffold (global base + page modules)
 - Repo hygiene: CI, docs, CODEOWNERS, security contact
 
 ## 0.2.x

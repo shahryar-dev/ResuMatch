@@ -1,19 +1,23 @@
 /**
- * File: src/pages/NotFound/NotFound.jsx
- * Purpose: Fallback for unknown routes.
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file NotFound.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Present a friendly fallback for unmapped routes.
  */
 import { Link } from "react-router-dom";
+import styles from "./NotFound.module.css";
 
 export default function NotFound() {
     return (
-        <section>
-            <h2>Page Not Found</h2>
-            {/* Provide a quick way back to home */}
-            <p>
-                <Link to="/">Go Home</Link>
+        <section className={styles.page}>
+            <h2 className={styles.title}>Page Not Found</h2>
+            <p className={styles.message}>
+                The page you were looking for could not be located. Head back to the dashboard to
+                continue.
             </p>
+            <Link className={styles.link} to="/">
+                Return Home
+            </Link>
         </section>
     );
 }

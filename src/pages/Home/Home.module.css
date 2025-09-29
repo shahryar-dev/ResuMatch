@@ -1,0 +1,70 @@
+/*
+ * @file Home.module.css
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Provide baseline styling for the public landing page hero and CTAs.
+ */
+
+.page {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.title {
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.75rem);
+  margin: 0;
+}
+
+.tagline {
+  color: var(--color-muted);
+  max-width: 46ch;
+}
+
+.actions {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.actionLink:hover,
+.actionLink:focus-visible {
+  border-color: var(--color-accent);
+  background: #e1e9fb;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-xl);
+  }
+
+  .actionLink {
+    width: 100%;
+    justify-content: center;
+  }
+}

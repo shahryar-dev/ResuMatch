@@ -1,9 +1,10 @@
 /**
- * File: src/pages/Register/Register.jsx
- * Purpose: Simple registration form (shell).
- * Author: Alex Kachur
- * Date: 2025-09-29
+ * @file Register.jsx
+ * @author Alex Kachur
+ * @since 2025-09-29
+ * @purpose Render the account registration shell for basic credentials.
  */
+import styles from "./Register.module.css";
 
 export default function Register() {
     /**
@@ -19,20 +20,32 @@ export default function Register() {
     }
 
     return (
-        <section>
-            <h2>Register</h2>
-            <form onSubmit={onSubmit}>
-                <label>
-                    Email
-                    <input name="email" type="email" required />
+        <section className={styles.page}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Create an account</h2>
+                <p className={styles.subtitle}>Start optimizing resumes tailored to each role.</p>
+            </header>
+
+            <form className={styles.form} onSubmit={onSubmit}>
+                <label className={styles.field}>
+                    <span>Email</span>
+                    <input className={styles.input} name="email" type="email" required />
                 </label>
-                <br />
-                <label>
-                    Password
-                    <input name="password" type="password" required />
+
+                <label className={styles.field}>
+                    <span>Password</span>
+                    <input
+                        className={styles.input}
+                        name="password"
+                        type="password"
+                        required
+                        autoComplete="new-password"
+                    />
                 </label>
-                <br />
-                <button type="submit">Create Account</button>
+
+                <div className={styles.actions}>
+                    <button type="submit">Create Account</button>
+                </div>
             </form>
         </section>
     );

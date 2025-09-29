@@ -1,7 +1,7 @@
 {
   "name": "resumatch",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "license": "Apache-2.0",
   "author": "Alex Kachur <AlexKachur98@gmail.com>",
