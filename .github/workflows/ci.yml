@@ -2,19 +2,49 @@ name: CI
 
 on:
   push:
-    branches: [ "**" ]
+    branches: ["**"]     # run on ANY branch push
+    tags: ["v*"]         # run on version tags (e.g., v0.1.0)
   pull_request:
-    branches: [ main ]
+    branches: [ main ]   # run on PRs targeting main
+  workflow_dispatch:      # allow manual runs from the UI
+
+# Least-privilege token
+permissions:
+  contents: read
+
+# Prevent duplicate runs for the same ref (e.g., push + PR)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run lint --if-present
-      - run: npm run build
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint (if configured)
+        run: npm run lint --if-present
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload production build (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: ignore
+          retention-days: 7

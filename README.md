@@ -8,7 +8,7 @@ ResuMatch is an AI‑assisted platform that helps candidates **match** their res
 This repository hosts the **full application**. We’re starting with the frontend (React + Vite) and will add the backend next.
 
 > 📄 Product documentation lives in **/docs** (SRS + diagrams). See:  
-> • **SRS**: [`docs/SRS/ResuMatch-PartA-SRS.docx`](docs/SRS/ResuMatch-PartA-SRS.docx)  
+> • **SRS**: [`docs/SRS/ResuMatch-PartA-SRS.pdf`](docs/SRS/ResuMatch-PartA-SRS.pdf)  
 > • **Diagrams**: [`docs/diagrams/`](docs/diagrams/)
 
 ---
@@ -102,7 +102,7 @@ resumatch/
         Subscriptions.jsx
         Subscriptions.module.css
   docs/
-    ResuMatch-Part A-SRS.docx
+    ResuMatch-Part A-SRS.pdf
     diagrams/
       *.png
       *.puml
