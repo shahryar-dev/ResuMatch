@@ -1,0 +1,36 @@
+/*
+ * @file UnderConstruction.module.css
+ * @author Alex Kachur
+ * @since 2025-10-01
+ * @purpose Style the shared under-construction placeholder surface.
+ */
+
+.wrapper {
+  display: grid;
+  gap: var(--space-lg);
+  text-align: center;
+  justify-items: center;
+}
+
+.badge {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(37, 99, 235, 0.12);
+  border-radius: 999px;
+  padding: var(--space-xs) var(--space-md);
+}
+
+.title {
+  font-size: 1.75rem;
+  max-width: 28rem;
+}
+
+.copy {
+  color: var(--color-muted);
+  max-width: 32rem;
+  line-height: 1.6;
+  margin: 0;
+}

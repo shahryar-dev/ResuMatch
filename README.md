@@ -31,6 +31,7 @@ ResuMatch is an AI‑assisted platform that helps candidates **match** their res
 - Basic routing and pages (Login, Register, Dashboard, Analysis, Results, Plans, Billing, Jobs, Notifications, Profile)
 - Clean, **folder‑per‑page** structure; easy to extend
 - Ready for **API integration** via `VITE_API_URL`
+- Professional layout shell with header + sidebar navigation and shared placeholders for in-flight features
 
 ## Styling conventions
 - Global styles live in `apps/web/src/styles/base.css`.
@@ -45,7 +46,7 @@ ResuMatch is an AI‑assisted platform that helps candidates **match** their res
 ```txt
 docs/                 ← product docs (SRS, diagrams)
 apps/
-  web/                ← React + Vite frontend (monorepo workspace)
+  web/                ← React + Vite frontend (workspace with pro layout shell)
 ```
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the evolving design.
@@ -71,6 +72,8 @@ ResuMatch/
         App.jsx
         main.jsx
         components/
+          SiteLayout/
+          UnderConstruction/
         pages/
         styles/
       vite.config.js
